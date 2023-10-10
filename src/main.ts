@@ -16,7 +16,7 @@ let isJumping = false
 let gameOver = true
 
 // mousedown instead of click (which waits for mouse button to release)
-document.addEventListener('mousedown', () => jump())
+document.addEventListener('mousedown', () => Jump())
 
 
 setInterval(function () { Main()}, 10)
@@ -33,20 +33,22 @@ function Main()
 }
 
 
-function jump()
+// capitilize J
+// reformat the if statments and the structure
+function Jump()
 {
-    if(gameOver === false)
+    if(gameOver)
     {
-        if(isJumping == false)
+        StartGame();
+    }
+    else
+    { 
+        if(!isJumping)
         {
             isJumping = true
             dino?.classList.add("jump")
             setTimeout(ResetPlayer, 500)
         }
-    }
-    else
-    {
-        StartGame();
     }
     
 }
