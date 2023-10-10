@@ -4,7 +4,7 @@
   height: 200px;
   border: 1px solid  black;
   margin: auto;
-  background-color:lightskyblue;
+  background-color:#D1F5BE;
   overflow: hidden;
 }
 
@@ -23,7 +23,8 @@
   width: 50px;
   height: 50px;
   
-  background-image: url(/assets/dino.png);
+  /* background-image: url(/assets/dino.png); */
+  background-image: url(/assets/gojo.png);
   background-size: 50px 50px;
 
   position: relative;
