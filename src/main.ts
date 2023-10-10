@@ -11,10 +11,12 @@ let score = 0
 SetText("click to start!")
 
 
-var isJumping = false
+// we should never use var
+let isJumping = false
 let gameOver = true
 
-document.addEventListener('click', () => jump())
+// mousedown instead of click (which waits for mouse button to release)
+document.addEventListener('mousedown', () => jump())
 
 
 setInterval(function () { Main()}, 10)
@@ -39,7 +41,7 @@ function jump()
         {
             isJumping = true
             dino?.classList.add("jump")
-            setTimeout(RemoveJump, 500)
+            setTimeout(ResetPlayer, 500)
         }
     }
     else
@@ -49,8 +51,8 @@ function jump()
     
 }
 
-
-function RemoveJump()
+// renamed this to make more sense
+function ResetPlayer()
 {
     dino?.classList.remove("jump")
     isJumping = false;
@@ -81,35 +83,28 @@ function CheckGameOver()
         //detect cactus collision
         if(dinoTop >= 150 && Math.abs(cactusleft) < 7)
         {
-            //end game
-            console.log("player died!")
-            SetText("Final Score: " + score + "! Click To Play Again!")
-            gameOver = true
-
-            //reset player
-            RemoveJump()
-            
-            //reset cactus
-            RemoveObstacles()
+            gameOverStuff()
         }
 
         //detect bird collision
         if(dinoTop <= 55 && Math.abs(birdleft) < 11)
         {
-            //end game
-            console.log("player died!")
-            SetText("Final Score: " + score + "! Click To Play Again!")
-            gameOver = true
-
-            //reset player
-            RemoveJump()
-            
-            //reset cactus
-            RemoveObstacles()
+            gameOverStuff()
         }
     }
 }
 
+// moved repeated code to its own function
+function gameOverStuff()
+{
+    console.log("player died")
+    SetText("Final Score: " + score + "! Click To Play Again!")
+    gameOver = true
+
+    // reset player and get rid of obstacles
+    ResetPlayer()
+    RemoveObstacles()
+}
 
 function StartGame()
 {
